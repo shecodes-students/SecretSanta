@@ -8,28 +8,25 @@ var nameList = [
 ];
 
 $(document).ready(function(){
-	window.randomName = pickRandomName(nameList);
-	luckyName(randomName, nameList);
+	$('section').on('click', '#go', function(){
+		luckyName(nameList);
+    });
 });
 
-var luckyName = function(randomName){
+function luckyName(nameList) {
 	var section = $('section');
-	$('section').on('click', '#go', function(){
-		var currentSanta = $('#santaName').val();
-		console.log(currentSanta);
+	var currentSanta = $('#santaName').val();
+    console.log('current name is', currentSanta);
 
-		if( currentSanta != randomName){
-			$('p').html(randomName);
-		
-		} else {
-			//pick up another random name
-			randomName = pickRandomName(nameList);
-            console.log(randomName);
-			$('p').text(randomName);
-		}
-		return;
-	});
-};
+    var randomName;
+    do {
+        randomName = pickRandomName(nameList); 
+    } while(currentSanta === randomName);
+    
+    $('p').html(randomName);
+    console.log('random name is', randomName);
+    return;
+}
 
 var pickRandomName = function(randomName){
 	var randomNameString = nameList[Math.floor(Math.random() * nameList.length)];
