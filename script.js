@@ -7,11 +7,9 @@ var nameList = [
 	'sara'
 ];
 
-$(document).ready(function(){
-	$('section').on('click', '#go', function(){
-		luckyName(nameList);
-    });
-});
+function pickRandomName(nameList){
+	return nameList[Math.floor(Math.random() * nameList.length)];
+}
 
 function luckyName(nameList) {
 	var section = $('section');
@@ -28,7 +26,10 @@ function luckyName(nameList) {
     return;
 }
 
-var pickRandomName = function(randomName){
-	var randomNameString = nameList[Math.floor(Math.random() * nameList.length)];
-	return randomNameString;
-};
+
+$(document).ready(function(){
+	$('section').on('click', '#go', function(){
+		luckyName(nameList);
+    });
+});
+
